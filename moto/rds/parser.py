@@ -23,6 +23,15 @@ class QueryParser:
     def parse(self, request_dict, operation_model):
         shape = operation_model.input_shape
         parsed = self._do_parse(request_dict, shape)
+        if parsed is not UNDEFINED:
+            if "db_instance_identifier" in parsed:
+                parsed["db_instance_identifier"] = parsed[
+                    "db_instance_identifier"
+                ].lower()
+            if "new_db_instance_identifier" in parsed:
+                parsed["new_db_instance_identifier"] = parsed[
+                    "new_db_instance_identifier"
+                ].lower()
         return parsed if parsed is not UNDEFINED else {}
 
     def _do_parse(self, request_dict, shape):

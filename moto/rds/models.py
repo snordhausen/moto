@@ -1140,7 +1140,7 @@ class DBInstance(CloudFormationModel, RDSBaseModel):
             "availability_zone": properties.get("AvailabilityZone"),
             "backup_retention_period": properties.get("BackupRetentionPeriod"),
             "db_instance_class": properties.get("DBInstanceClass"),
-            "db_instance_identifier": resource_name.replace("_", "-"),
+            "db_instance_identifier": resource_name.replace("_", "-").lower(),
             "db_name": properties.get("DBName"),
             "preferred_backup_window": properties.get(
                 "PreferredBackupWindow", "13:14-13:44"
